@@ -89,5 +89,4 @@ sudo apt-get install open-vm-tools-desktop
 ```shell
 python --version
 ```
-
-​	查看当前版本，及时正确配置环境变量
+4. 查看当前版本，及时正确配置环境变量
