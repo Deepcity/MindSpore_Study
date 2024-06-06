@@ -98,3 +98,48 @@ output = ops.stack([data1, data2])
 
 print(output)
 print("shape:\n", output.shape)
+
+
+print("-------------------")
+print("")
+
+# Multual transformation between Tensor and Numpy
+t = Tensor([1., 1., 1., 1., 1.])
+print(f"t: {t}", type(t))
+n = t.asnumpy()
+print(f"n: {n}", type(n))
+
+print()
+
+n = np.ones(5)
+t = Tensor.from_numpy(n)
+
+np.add(n, 1, out=n)
+print(f"n: {n}", type(n))
+print(f"t: {t}", type(t))
+
+
+print("-------------------")
+print("")
+
+# CSRTensor 稀疏张量表实例
+indptr = Tensor([0, 1, 2])
+indices = Tensor([0, 1])
+values = Tensor([1, 2], dtype=mindspore.float32)
+shape = (2, 4)
+
+# Make a CSRTensor
+csr_tensor = CSRTensor(indptr, indices, values, shape)
+
+print(csr_tensor.astype(mindspore.float64).dtype)
+
+print(csr_tensor)
+
+indices = Tensor([[0, 1], [1, 2]], dtype=mindspore.int32)
+values = Tensor([1, 2], dtype=mindspore.float32)
+shape = (3, 4)
+
+# Make a COOTensor
+coo_tensor = COOTensor(indices, values, shape)
+
+print(coo_tensor)
