@@ -14,7 +14,7 @@ from mindspore.dataset import MnistDataset
 train_dataset = MnistDataset('MNIST_Data/train')
 test_dataset = MnistDataset('MNIST_Data/test')
 
-print(train_dataset.get_col_names())
+# print(train_dataset.get_col_names())
 
 
 def datapipe(dataset, batch_size):
@@ -65,70 +65,70 @@ class Network(nn.Cell):
         return logits
 
 
-model = Network()
-print(model)
+# model = Network()
+# print(model)
 
-# 模型训练函数
-# Instantiate loss function and optimizer
-loss_fn = nn.CrossEntropyLoss()
-optimizer = nn.SGD(model.trainable_params(), 1e-2)
-
-
-# 1. Define forward function
-def forward_fn(data, label):
-    logits = model(data)
-    loss = loss_fn(logits, label)
-    return loss, logits
+# # 模型训练函数
+# # Instantiate loss function and optimizer
+# loss_fn = nn.CrossEntropyLoss()
+# optimizer = nn.SGD(model.trainable_params(), 1e-2)
 
 
-# 2. Get gradient function
-grad_fn = mindspore.value_and_grad(forward_fn, None, optimizer.parameters, has_aux=True)
+# # 1. Define forward function
+# def forward_fn(data, label):
+#     logits = model(data)
+#     loss = loss_fn(logits, label)
+#     return loss, logits
 
 
-# 3. Define function of one-step training
-def train_step(data, label):
-    (loss, _), grads = grad_fn(data, label)
-    optimizer(grads)
-    return loss
+# # 2. Get gradient function
+# grad_fn = mindspore.value_and_grad(forward_fn, None, optimizer.parameters, has_aux=True)
 
 
-def train(model, dataset):
-    size = dataset.get_dataset_size()
-    model.set_train()
-    for batch, (data, label) in enumerate(dataset.create_tuple_iterator()):
-        loss = train_step(data, label)
-
-        if batch % 100 == 0:
-            loss, current = loss.asnumpy(), batch
-            print(f"loss: {loss:>7f}  [{current:>3d}/{size:>3d}]")
+# # 3. Define function of one-step training
+# def train_step(data, label):
+#     (loss, _), grads = grad_fn(data, label)
+#     optimizer(grads)
+#     return loss
 
 
-# 测试函数
-def test(model, dataset, loss_fn):
-    num_batches = dataset.get_dataset_size()
-    model.set_train(False)
-    total, test_loss, correct = 0, 0, 0
-    for data, label in dataset.create_tuple_iterator():
-        pred = model(data)
-        total += len(data)
-        test_loss += loss_fn(pred, label).asnumpy()
-        correct += (pred.argmax(1) == label).asnumpy().sum()
-    test_loss /= num_batches
-    correct /= total
-    print(f"Test: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
+# def train(model, dataset):
+#     size = dataset.get_dataset_size()
+#     model.set_train()
+#     for batch, (data, label) in enumerate(dataset.create_tuple_iterator()):
+#         loss = train_step(data, label)
+
+#         if batch % 100 == 0:
+#             loss, current = loss.asnumpy(), batch
+#             print(f"loss: {loss:>7f}  [{current:>3d}/{size:>3d}]")
 
 
-# 实际调用
-epochs = 3
-for t in range(epochs):
-    print(f"Epoch {t+1}\n-------------------------------")
-    train(model, train_dataset)
-    test(model, test_dataset, loss_fn)
-print("Done!")
+# # 测试函数
+# def test(model, dataset, loss_fn):
+#     num_batches = dataset.get_dataset_size()
+#     model.set_train(False)
+#     total, test_loss, correct = 0, 0, 0
+#     for data, label in dataset.create_tuple_iterator():
+#         pred = model(data)
+#         total += len(data)
+#         test_loss += loss_fn(pred, label).asnumpy()
+#         correct += (pred.argmax(1) == label).asnumpy().sum()
+#     test_loss /= num_batches
+#     correct /= total
+#     print(f"Test: \n Accuracy: {(100*correct):>0.1f}%, Avg loss: {test_loss:>8f} \n")
 
-# 保存参数
-mindspore.save_checkpoint(model, "model.ckpt")
-print("Saved Model to model.ckpt")
+
+# # 实际调用
+# epochs = 3
+# for t in range(epochs):
+#     print(f"Epoch {t+1}\n-------------------------------")
+#     train(model, train_dataset)
+#     test(model, test_dataset, loss_fn)
+# print("Done!")
+
+# # 保存参数
+# mindspore.save_checkpoint(model, "model.ckpt")
+# print("Saved Model to model.ckpt")
 
 # 加载参数
 # Instantiate a random initialized model
