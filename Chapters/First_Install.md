@@ -11,14 +11,12 @@
 
 2. 下载Ubuntu18.04系统光盘https://releases.ubuntu.com/18.04/ubuntu-18.04.6-desktop-amd64.iso
 
-![image-20240604180519605](./../../../AppData/Roaming/Typora/typora-user-images/image-20240604180519605.png)
-
 3. VMware简易安装后对18旧版本遇到的问题的解决方案
    1. 旧版本屏幕无法适应屏幕，想到vmwaretools的问题，检查该部分发现并未自动安装
 
 通过重新启动挂载\VMware\VMware Workstation目录下linux.iso文件出现
 
-![image-20240604182654391](https://s2.loli.net/2024/06/04/ubpxRGn8QkVzNtB.png)
+![image-20240604182654391](https://s2.loli.net/2024/06/06/IWioHYeLj9JgMtb.png)
 
 安装该软件
 
