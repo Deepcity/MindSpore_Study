@@ -1,2 +1,2 @@
-ataset.shuffle(buffer_size=64)
-# visualize(train_dataset)
+
+        # print(self.dense_relu_sequential)
