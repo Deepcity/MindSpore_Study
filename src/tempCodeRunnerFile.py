@@ -1,2 +1,1 @@
-
-        # print(self.dense_relu_sequential)
+loss_fn
