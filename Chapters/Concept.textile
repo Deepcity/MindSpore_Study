@@ -1,0 +1,213 @@
+h1(#初等概念名词解释). 初等概念名词解释
+
+在接近学完初级的机器学习后，我意识到单纯的看MindSpore文档以及看Youtube视频是远远不够的，我必须系统的学习一些概念知识以避免在后面的学习中云里雾里，故就有了这一章，在这一章中几乎全是对概念的解释，他们的来源广泛，传送门我都会贴在此处，供查阅：
+
+<blockquote>
+
+"神经网络入门 &#45; 阮一峰的网络日志 (ruanyifeng.com)":https://www.ruanyifeng.com/blog/2017/07/neural-network.html
+
+"$":https://github.com/exacity/deeplearningbook-chinese
+
+</blockquote>
+
+h2(#感知机perceptron). 感知机（Perceptron）
+
+!https://s2.loli.net/2024/06/10/bkVr3Lymea1OAnw.png(fig:)!
+
+ 上图的圆圈就代表一个感知器。它接受多个输入（x1，x2，x3...），产生一个输出（output），好比神经末梢感受各种外部环境的变化，最后产生电信号。
+
+ 感知机是输出传入参数的一个函数变换，大多数情况下他是(最初涉及)
+
+<span class="math">output = \sigma(w_1*a_1 +\cdots +w_n*a_n + b)</span>
+其中<span class="math">\sigma </span>函数表达式如下
+
+<span class="math">σ(z) = 1 / (1 + e^{-z})</span>
+h2(#表示学习representation-learning). 表示学习（Representation Learning）
+
+使用机器学习来发掘表示本身，而不仅仅把表示映射到输出,学习到的表示往往比手动设计的表示表现得更好。并且不需要人工干预就能迅速适应新的任务。
+
+h2(#变差因素). 变差因素
+
+在此背景下，‘‘因素''这个词仅指代影响的不同来源；因素通常不是乘性组合。这些因素通常是不能被直接观察到的量。相反，它们可能是现实世界中观察不到的物体或者不可观测的力，但会影响可观测的量。为了对观察到的数据提供有用的简化解释或推断其原因，它们还可能以概念的形式存在于人类的思维中。
+
+它们可以被看作数据的概念或者抽象，帮助我们了解这些数据的丰富多样性。
+
+h2(#可见层). 可见层
+
+也就是神经网路的输入层，这样命名的原因是因为它包含我们能观察到的变量。
+
+h2(#隐藏层). 隐藏层
+
+也就是神经网路的中间层。因为它们的值不在数据中给出，所以将这些层称为‘‘隐藏”;模型必须确定哪些概念有利于解释观察数据中的关系。这里的图像是每个隐藏单元表示的特征的可视化。这里也是分形的思想运用的层次。
+
+h2(#输出层). 输出层
+
+输出神经网路的判断也称Object Identify
+
+h2(#前馈深度网络). 前馈深度网络
+
+h2(#多层感知机multilayer-perceptron). 多层感知机（Multilayer Perceptron）
+
+多层感知机仅仅是一个将一组输入值映射到输出值的数学函数。该函数由许多较简单的函数复合而成。我们可以认为不同数学函数的每一次应用都为输入提供了新的表示。
+
+h2(#为什么需要使用非线性函数). 为什么需要使用非线性函数
+
+# 线性模型的局限性，一个很经典的例子是，线性模型是无法学习异或函数的。
+# 
+
+h2(#分布式表示). 分布式表示
+
+其思想是：系统的每一个输入都应该由多个特征表示，并且每一个特征都应该参与到多个可能输入的表示。这显然也与神经网络每一层layer与layer之间的dense有关联
+
+h2(#长短期记忆long-short-term-memorylstm). 长短期记忆（Long short&#45;term memory）LSTM
+
+h2(#线性代数). 线性代数
+
+h3(#主对角线). 主对角线
+
+即满足<span class="math">a = \{a_{i,j}|i=j\}</span>的元素构成的线，特殊的<span class="math">n\not =m</span>
+
+!https://s2.loli.net/2024/06/10/7WA9zDuB2UYrlKF.png(fig:)!
+
+h3(#转置). 转置
+
+即矩阵对主对角线的镜像，特俗的有<span class="math">n\not = m</span>
+
+!https://s2.loli.net/2024/06/10/vtux96qNrkAH8jZ.png(fig:)!
+
+h3(#元素对应乘积hadamard-乘积). 元素对应乘积（Hadamard 乘积）
+
+记为<span class="math">A\odot B</span>
+
+h3(#点积). 点积
+
+两个相同维数的向量x和y的点积（dot product）可看作是矩阵乘积<span class="math">A^\top B</span>。我们可以把矩阵乘积C=AB中计算Cij的步骤看作是A的第i行和B的第j列之间的点积。
+
+矩阵的乘法是不满足交换律的，但是矩阵的点积是满足的。
+
+<span class="math">x^\top y = y^\top x</span>
+矩阵乘积转置的简单形式
+
+<span class="math">(AB)^\top = B^\top A^\top</span>
+注意顺序是不能更改的因为矩阵乘法不满足交换律
+
+h3(#单位矩阵). 单位矩阵
+
+单位矩阵指主对角线上的值都为1，其他地方都为零的矩阵。
+
+我们将保持n维向量不变的单位矩阵记作<span class="math">I_n</span>。
+
+h3(#逆矩阵). 逆矩阵
+
+很朴素的定义，需要注意的是由于矩阵乘法不满足交换律，因此我们再说一个矩阵的逆的时候通常是说矩阵的左逆。
+
+对于方阵而言，它的左逆和右逆是相等的
+
+h3(#线性相关与生成子空间). 线性相关与生成子空间
+
+如果逆矩阵<span class="math">A^{-1}</span>存在。那么式(2.11)肯定对于每一个向量b恰好存在一个解。但是，对于方程组而言，对于向量b的某些值，有可能不存在解，或者存在无限多个解。存在多于一个解但是少于无限多个解的情况是不可能发生的；因为如果x和y都是某方程组的解，则x,y则构成了一个张成空间。
+
+为了分析方程有多少个解，我们可以将A的列向量看作从原点（origin）（元素都是零的向量）出发的不同方向，确定有多少种方法可以到达向量b。在这个观点下，向量x中的每个元素表示我们应该沿着这些方向走多远，即xi表示我们需要沿着第i个向量的方向走多远：
+
+<span class="math">Ax = \sum _i x_i A_{:,i}</span>
+这样的操作我们称为线性组合。形式上，一组向量的线性组合是指每个向量乘以对应标量系数之后的和，即：
+
+<span class="math">\sum _i c_i v^{(i)}</span>
+一组向量的生成子空间（span）是原始向量线性组合后所能抵达的点的集合。
+
+确定Ax=b是否有解相当于确定向量b是否在A列向量的生成子空间中。这个特殊的生成子空间被称为A的列空间（column space）或者A的值域（range）。
+
+为了使方程Ax=b对于任意向量<span class="math">b\in \mathbb{R}^m</span>都存在解，我们要求A的列空间构成整个<span class="math">\mathbb{R}^m</span>。如果<span class="math">\mathbb{R}^m</span>中的某个点不在A的列空间中，那么该点对应的b会使得该方程没有解。矩阵A的列空间是整个<span class="math">\mathbb{R}^m</span>的要求，意味着A至少有m列，即n&gt;=m。否则，A列空间的维数会小于m。例如，假设A是一个<span class="math">3\times 2</span>的矩阵。目标b是3维的，但是x只有2维。所以无论如何修改x的值，也只能描绘出<span class="math">\mathbb{R}^3</span>空间中的二维平面。当且仅当向量b在该二维平面中时，该方程有解。
+
+不等式n&gt;=m仅是方程对每一点都有解的必要条件。这不是一个充分条件，因为有些列向量可能是冗余的。假设有一个<span class="math">\mathbb{R}^{2\times2}</span>中的矩阵，它的两个列向量是相同的。那么它的列空间和它的一个列向量作为矩阵的列空间是一样的。换言之，虽然该矩阵有2列，但是它的列空间仍然只是一条线，不能涵盖整个<span class="math">\mathbb{R}^2</span>空间。
+
+正式地说，这种冗余被称为线性相关（linear dependence）。如果一组向量中的任意一个向量都不能表示成其他向量的线性组合，那么这组向量称为线性无关（linearly independent）。如果某个向量是一组向量中某些向量的线性组合，那么我们将这个向量加入这组向量后不会增加这组向量的生成子空间。这意味着，如果一个矩阵的列空间涵盖整个<span class="math">\mathbb{R}^m</span>，那么该矩阵必须包含至少一组m个线性无关的向量。这是对于每一个向量b的取值都有解的充分必要条件。值得注意的是，这个条件是说该向量集恰好有m个线性无关的列向量，而不是至少m个。不存在一个m维向量的集合具有多于m个彼此线性不相关的列向量，但是一个有多于m个列向量的矩阵有可能拥有不止一个大小为m的线性无关向量集。
+
+要想使矩阵可逆，我们还需要保证对于每一个b值至多有一个解。为此，我们需要确保该矩阵至多有m个列向量。否则，该方程会有不止一个解。
+
+h3(#奇异矩阵singular-square). 奇异矩阵（singular square）
+
+该矩阵必须是一个方阵（square），即m=n，并且所有列向量都是线性无关的。一个列向量线性相关的方阵被称为奇异的（singular）。
+
+h3(#矩阵右乘). 矩阵右乘
+
+<span class="math">AA^{-1}=I</span>
+h3(#范数norm). 范数（norm）
+
+用来衡量一个向量的大小。机器学习中常用范数衡量向量大小。形式上<span class="math">L^p</span>定义如下
+
+<span class="math">||x||_p = \left( \sum _i |x_i|^p \right) ^{\frac{1}{p}}</span>
+范数（包括Lp范数）是将向量映射到非负值的函数
+
+严格的讲，范数是满足以下性质的函数
+
+* f(x) = 0 =&gt; x=0
+* f(x&#43;y) &lt;=f(x) &#43; f(y) （三角不等式）
+* 对<span class="math">\forall \alpha \in \mathbb{R},f(\alpha x) = |\alpha|f(x)</span>
+
+当p= 2时，<span class="math">L^2</span>范数被称为欧几里得范数（Euclidean norm）。它表示从原点出发到向量x确定的点的欧几里得距离。<span class="math">L^2</span>范数在机器学习中出现地十分频繁，经常简化表示为∥x∥，略去了下标2。平方<span class="math">L^2</span>范数也经常用来衡量向量的大小，可以简单地通过点积<span class="math">x ^\top x</span>计算。
+
+但是在很多情况下，平方<span class="math">L^2</span>范数也可能不受欢迎，因为它在原点附近增长得十分缓慢。在某些机器学习应用中，区分恰好是零的元素和非零但值很小的元素是很重要的。在这些情况下，我们转而使用在各个位置斜率相同，同时保持简单的数学形式的函数：<span class="math">L^1</span>范数。<span class="math">L^1</span>范数可以简化如下：
+
+<span class="math">||x||_1 = \sum _i |x_i|</span>
+有时候我们会统计向量中非零元素的个数来衡量向量的大小。有些作者将这种函数称为“<span class="math">L^0</span>范数''，但是这个术语在数学意义上是不对的
+
+另外一个经常在机器学习中出现的范数是<span class="math">L^\inf</span>范数，也被称为最大范数（maxnorm）。这个范数表示向量中具有最大幅值的元素的绝对值：
+
+<span class="math">||x||_1 = \max _i |x_i|</span>
+有时候我们可能也希望衡量矩阵的大小。在深度学习中，最常见的做法是使用Frobenius范数（Frobenius norm），
+
+<span class="math">||A||_F = \sqrt{\sum _{i,j} A^2_{i,j}}</span>
+两个向量的点集可以用范数来表示，具体的
+
+<span class="math">x^\top y = ||x||_2 ||y||_2 cos\theta</span>
+<span class="math">\theta</span>表示x,y之间的夹角
+
+h3(#对角矩阵). 对角矩阵
+
+只在主对角线上含有非零元素，，其他位置都是零。用diag(<span class="math">v</span>)表示一个对角矩阵。
+
+计算乘法diag(v)x，我们只需要将x中的每个元素xi放大vi倍。换言之，diag(v)x=v⊙x
+
+对角方阵的逆矩阵存在，当且仅当对角元素都是非零值，在这种情况下，diag(v)1=diag([1/v1;.... ;1/vn]⊤)。
+
+非方阵的对角矩阵没有逆矩阵
+
+h3(#对称矩阵). 对称矩阵
+
+对称矩阵是矩阵的转置和自己相等的矩阵
+
+<span class="math">A = A ^\top</span>
+h3(#单位矩阵-2). 单位矩阵
+
+具有单位范数的矩阵
+
+如果<span class="math">x^\top y=0</span>，那么向量x和向量y互相正交（orthogonal）。如果两个向量都有非零范数，那么这两个向量之间的夹角是90度。在Rn中，至多有n个范数非零向量互相正交。如果这些向量不仅互相正交，并且范数都为1，那么我们称它们是标准正交（orthonormal）。
+
+正交矩阵（orthogonal matrix）是指行向量和列向量是分别标准正交的方阵，更具体的，他们是满足以下条件的矩阵
+
+<span class="math">A^\top A = A ^\top A = I.</span>
+这样意味着
+
+<span class="math">A^{-1} = A^\top</span>
+h3(#特征分解). 特征分解
+
+特征分解（eigendecomposition）是使用最广的矩阵分解之一，即我们将矩阵分解成一组特征向量和特征值。
+
+方阵A的特征向量（eigenvector）是指与A相乘后相当于对该向量进行缩放的非零向量v：
+
+<span class="math">A v = \lambda v</span>
+标量<span class="math">\lambda</span>被称为这个特征向量对应的特征值（eigenvalue）。
+
+（类似地，我们也可以定义左特征向量（left eigenvector）<span class="math">v^⊤A=\lambda v^⊤</span>，但是通常我们更关注右特征向量（right eigenvector））。
+
+所有特征值都是正数的矩阵被称为正定（positive definite）；所有特征值都是非负数的矩阵被称为半正定（positive semidefinite）。同样地，所有特征值都是负数的矩阵被称为负定（negative definite）；所有特征值都是非正数的矩阵被称为半负定（negative semidefinite）。
+
+然而，我们也常常希望将矩阵分解（decompose）成特征值和特征向量。这样可以帮助我们分析矩阵的特定性质，就像质因数分解有助于我们理解整数。
+
+矩阵A的特征分解可以记作
+
+<span class="math">A = V diag(\lambda) V^{-1}</span>
+不是每一个矩阵都可以分解成特征值和特征向量。在某些情况下，特征分解存在，但是会涉及复数而非实数。
+
+其中Q是A的特征向量组成的正交矩阵，是对角矩阵。特征值<span class="math">\lambda_{i;i}</span>对应的特征向量是矩阵Q的第i列，记作Q:;i。因为Q是正交矩阵，我们可以将A看作沿方向v(i)延展i倍的空间
